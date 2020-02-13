@@ -1,0 +1,14 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: install feh
+      apt: pkg=feh
+ 
+    - name: install xscreensaver
+      apt: pkg=xscreensaver 
+
+    - name: create media directory
+      file:
+        path: /media
+        state: directory
+        mode: "u=rw,g=wx,o=rwx"
