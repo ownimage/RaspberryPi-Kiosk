@@ -1,6 +1,9 @@
 # Setting up the Raspberry Pi
+
 First we need to get openssh-server working.
+
 ##On the Raspberry Pi
+
 I have started with the Ubuntu 18.04 Mate distribution.
 ```
 sudo apt-get remove --purge openssh-server
@@ -35,6 +38,7 @@ ssh root@<ip address>
 And it should allow you to enter the password and login
 
 ##On the client machine
+
 Now we want to change things so that we can log in as root without having to give the password.
 Note in the following `rpi` is just the name of an identity ... it could be something replaced with something different.
 
@@ -58,6 +62,7 @@ This should let up login in without needing to give the password.  The `eval` an
 If that works we can now disable root login with a password on the Raspberry Pi.
 
 ##On the Raspberry Pi
+
 ```
 sudo passwd -l root
 sudo vi  /etc/ssh/sshd_config
@@ -71,7 +76,9 @@ We now need to restart the server to make this take effect.
 ```
 sudo service ssh restart
 ```
+
 ##On the client machine
+
 ```
 ssh -i ~/.ssh/rpi root@<ipaddress>
 ```
@@ -85,6 +92,7 @@ ssh root@<ip address>
 ```
 
 #Running Ansible
+
 You will need to change the ip address in hosts.ini to be the same as the Pi that you are setting up.
 ```
 ansible-playbook -i hosts.ini  -u root install-kiosk.yml
